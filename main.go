@@ -23,10 +23,6 @@ func main() {
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("entering root handler")
-	clientIP := ClientIP(r)
-	httpCode := http.StatusOK
-	w.WriteHeader(httpCode)
-	fmt.Printf("clentIP: %s, responseHttpCode: %d\n", clientIP, httpCode)
 
 	os.Setenv("VERSION", "0.0.1")
 
@@ -34,13 +30,16 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("VERSION %s\n", version)
 
-	w.Header().Set("VERSION", version)
+	w.Header().Add("VERSION", version)
 
 	for k, v := range r.Header {
-		for _, vv := range v {
-			w.Header().Set(k, vv)
-		}
+		w.Header().Add(k, v[0])
 	}
+
+	clientIP := ClientIP(r)
+	httpCode := http.StatusOK
+	w.WriteHeader(httpCode)
+	fmt.Printf("clentIP: %s, responseHttpCode: %d\n", clientIP, httpCode)
 
 }
 
