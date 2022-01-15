@@ -1,0 +1,12 @@
+# FROM alpine
+FROM golang:alpine
+# ENV key=value
+LABEL multi.label1="bbtgo"
+
+RUN go build -o bbtgo ./bin/
+
+ADD ./bin/bbtgo /bbtgo
+
+EXPOSE 80
+
+ENTRYPOINT /bbtgo
