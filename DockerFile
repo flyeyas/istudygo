@@ -3,7 +3,7 @@ FROM golang:alpine
 # ENV key=value
 LABEL multi.label1="bbtgo"
 
-RUN go build -o bbtgo bin/
+RUN go build -o bin/bbtgo .
 
 ADD bin/bbtgo /bbtgo
 
