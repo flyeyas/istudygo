@@ -1,22 +1,20 @@
-FROM ubuntu
+FROM golang:1.17.5 as builder
 
-# FROM golang:alpine
-# ENV key=value
-LABEL multi.label1="bbtgo" multi.label2="httpserver" other="study"
+ENV GO111MODULE=off \
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64
 
-ADD bin/bbtgo /bbtgo
+WORKDIR /bbtgo
 
-EXPOSE 80
+COPY . .
 
-ENTRYPOINT /bbtgo
+RUN go build -o bbtgo .
 
+FROM scratch
 
-# 生成镜像
-# docker build -t bbtgo:1.0.0 .
-#运行容器
-#docker run -d -p 8080:80 bbtgo:1.0.0
+COPY --from=builder /bbtgo/bbtgo /
 
-#推送镜像到docker hub
-# docker login
-# docker tag bbtgo:1.0.0  maizui216/bbtgo:1.0.0
-# docker push maizui216/bbtgo:1.0.0
+EXPOSE 8080
+
+ENTRYPOINT ["/bbtgo"]
