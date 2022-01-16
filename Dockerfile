@@ -2,8 +2,12 @@ FROM ubuntu
 
 # FROM golang:alpine
 # ENV key=value
+
 LABEL multi.label1="bbtgo" multi.label2="httpserver" other="study"
 
+RUN  apk add --no-cache go
+
+RUN go version
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/bbtgo .
 
