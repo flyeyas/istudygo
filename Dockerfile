@@ -5,7 +5,7 @@ FROM ubuntu
 
 LABEL multi.label1="bbtgo" multi.label2="httpserver" other="study"
 
-RUN  apk add --no-cache go
+# RUN  apk add --no-cache go
 
 RUN go version
 
