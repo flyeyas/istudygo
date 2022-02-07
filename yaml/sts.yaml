@@ -167,7 +167,7 @@ spec:
   - metadata:
       name: nfs-pv
     spec:
-      storageClassName: nfs
+      # storageClassName: nfs
       accessModes:
       - "ReadWriteOnce"
       resources:
