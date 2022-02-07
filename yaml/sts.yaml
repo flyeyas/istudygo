@@ -165,7 +165,7 @@ spec:
             name: datadir
   volumeClaimTemplates:
   - metadata:
-      name: datadir
+      name: nfs-pvc
     spec:
       storageClassName: nfs
       accessModes:
