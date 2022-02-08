@@ -15,5 +15,5 @@ spec:
     - hard
     - nfsvers=4.1
   nfs:
-    path: /run/etcd
+    path: /var/run/etcd
     server: 10.0.4.14
