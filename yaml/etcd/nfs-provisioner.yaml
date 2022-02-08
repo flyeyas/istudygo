@@ -1,16 +1,9 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: nfs-client-provisioner
-  labels:
-    app: nfs-client-provisioner
-  # replace with namespace where provisioner is deployed
-  namespace: stg1  #与RBAC文件中的namespace保持一致
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: nfs-client-provisioner
   strategy:
     type: Recreate
   selector:
@@ -21,7 +14,6 @@ spec:
       labels:
         app: nfs-client-provisioner
     spec:
-      serviceAccountName: nfs-client-provisioner
       containers:
         - name: nfs-client-provisioner
           image: quay.io/external_storage/nfs-client-provisioner:latest
@@ -30,13 +22,13 @@ spec:
               mountPath: /persistentvolumes
           env:
             - name: PROVISIONER_NAME
-              value: nfs-storage-provisioner  #provisioner名称,请确保该名称与 nfs-StorageClass.yaml文件中的provisioner名称保持一致
+              value: fuseim.pri/ifs
             - name: NFS_SERVER
-              value: 10.0.4.14   #NFS Server IP地址
-            - name: NFS_PATH  
-              value: /opt/k8s-pods/data    #NFS挂载卷
+              value: 10.0.4.14
+            - name: NFS_PATH
+              value: /opt/k8s-pods/data
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 10.0.4.14  #NFS Server IP地址
-            path: /opt/k8s-pods/data     #NFS 挂载卷
+            server: 10.0.4.14
+            path: /opt/k8s-pods/data
