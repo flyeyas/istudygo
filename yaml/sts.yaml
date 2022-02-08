@@ -162,12 +162,12 @@ spec:
                     fi
           volumeMounts:
           - mountPath: /var/run/etcd
-            name: nfs-pv
+            name: datadir
   volumeClaimTemplates:
   - metadata:
-      name: nfs-pv
+      name: datadir
     spec:
-      # storageClassName: nfs
+      storageClassName: nfs
       accessModes:
       - "ReadWriteOnce"
       resources:
