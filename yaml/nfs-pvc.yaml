@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: nfs-pvc
   # name: datadir
-  namespace: stg1
+  # namespace: stg1
 spec:
   storageClassName: nfs
   accessModes:
