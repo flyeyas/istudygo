@@ -21,6 +21,9 @@ metadata:
 spec:
   serviceName: "nginx"
   replicas: 2  #两个副本
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
