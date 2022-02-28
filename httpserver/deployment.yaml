@@ -20,17 +20,17 @@ spec:
       - name: httpserver        
         image: maizui216/bbtgo:2.0.0
         ports:        
-        - containerPort: 8081
+        - containerPort: 8080
         readinessProbe:  
           httpGet:    
             path: /healthz    
-            port: 8081    
+            port: 8080
           initialDelaySeconds: 5 
           periodSeconds: 5
         startupProbe:  
           httpGet:    
             path: /healthz    
-            port: 8081  
+            port: 8080  
           failureThreshold: 30  
           periodSeconds: 10
         
