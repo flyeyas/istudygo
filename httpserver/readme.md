@@ -4,6 +4,6 @@
 
  kubectl get pod -n httpserver
 
-kubectl describe pod -n httpserver httpserver-78694f5c7-nrxfj
+kubectl describe pod -n httpserver httpserver-7c5d458bb5-79pdx
 
 docker run -d -p 8080:80 maizui216/bbtgo:2.0.0
