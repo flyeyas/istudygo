@@ -4,10 +4,11 @@ metadata:
   labels:
     app: httpserver
   name: httpserver-svc
-spec:  
-  - port: 8080
-    protocol: tcp
-    targetPort: 80
-selector:
-  app: httpserver
-type: loadBalancer
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: httpserver
+  type: LoadBalancer
