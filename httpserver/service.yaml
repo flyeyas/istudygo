@@ -6,9 +6,9 @@ metadata:
   name: httpserver-svc
 spec:
   ports:
-    - port: 8080
+    - port: 30001
       protocol: TCP
       targetPort: 80
   selector:
     app: httpserver
-  type: LoadBalancer
+  type: NodePort
