@@ -18,9 +18,9 @@ docker run -d -p 8080:80 maizui216/bbtgo:2.0.0
 
 
 
-helm install ingress-nginx nginx-stable/nginx-ingress --create-namespace --namespace ingre --debug
+helm install ingress-nginx nginx-stable/nginx-ingress --create-namespace --namespace ingress --debug
 
-helm list -n ingres
+helm list -n ingress
 
 # 地址dns
 nslookup bbtgo.51.cafe
