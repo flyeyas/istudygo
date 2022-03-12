@@ -37,6 +37,10 @@ kubectl create -f interceptors.yaml
 kubectl create -f  tekton-dashboard-release.yaml
 kubectl create -f trigger-release.yaml
 
+kubectl delete  -f tekton-release.yaml
+kubectl delete -f interceptors.yaml
+kubectl delete -f  tekton-dashboard-release.yaml
+kubectl delete -f trigger-release.yaml
 
 kubectl -n tekton-pipelines get po
 
