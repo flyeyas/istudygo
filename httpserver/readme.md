@@ -44,7 +44,7 @@ kubectl delete -f trigger-release.yaml
 
 kubectl -n tekton-pipelines get po
 
- kubectl -n tekton-pipelines logs -f tekton-dashboard-8588f97764-2khfw
+ kubectl -n tekton-pipelines logs -f tekton-dashboard-55f9f8777b-c85gs
 
 kubectl apply -f task-hello.yaml
 
