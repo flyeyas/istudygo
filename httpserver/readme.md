@@ -32,19 +32,23 @@ nslookup bbtgo.51.cafe
 
 # tekton
 
+sudo crictl pull gcr.io/tekton-releases/github.com/tektoncd/triggers/cmd/interceptors:v0.15.1@sha256:726c308bcab1d746b0cb3b90c5f6abbea64da34459681cba2143c34c337cdc94
+
+sudo crictl pull registry.aliyuncs.com/google_containers/interceptors:v0.15.1@sha256:726c308bcab1d746b0cb3b90c5f6abbea64da34459681cba2143c34c337cdc94
+
 kubectl create -f tekton-release.yaml
 kubectl create -f interceptors.yaml
 kubectl create -f  tekton-dashboard-release.yaml
 kubectl create -f trigger-release.yaml
 
-kubectl delete  -f tekton-release.yaml
+kubectl delete -f tekton-release.yaml
 kubectl delete -f interceptors.yaml
-kubectl delete -f  tekton-dashboard-release.yaml
+kubectl delete -f tekton-dashboard-release.yaml
 kubectl delete -f trigger-release.yaml
 
 kubectl -n tekton-pipelines get po
 
- kubectl -n tekton-pipelines logs -f tekton-dashboard-8588f97764-8mwrk
+ kubectl -n tekton-pipelines logs -f tekton-dashboard-8588f97764-rrc4b
 
 kubectl apply -f task-hello.yaml
 
