@@ -60,3 +60,6 @@ kubectl delete -f taskrun-hello.yaml
 
 
 kubectl describe taskrun hello-run-kjbf8
+
+
+sudo vim /etc/containerd/config.toml
