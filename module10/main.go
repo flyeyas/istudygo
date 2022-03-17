@@ -1,18 +1,22 @@
 package main
 
 import (
+	"bbtgo/metrics"
 	"fmt"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"io"
-	"metrics"
+	"math/rand"
 	"net"
 	"net/http"
 	"os"
 	"strings"
+	"time"
+
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func main() {
 	fmt.Println("Starting http server...")
+	metrics.Register()
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", rootHandler)
 	mux.HandleFunc("/healthz", healthz)
