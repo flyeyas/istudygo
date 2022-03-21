@@ -1,10 +1,10 @@
 package main
 
 import (
-	"bbtgo/metrics"
 	"fmt"
 	"io"
 	"math/rand"
+	"module/metrics"
 	"net"
 	"net/http"
 	"os"
