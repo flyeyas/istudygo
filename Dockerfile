@@ -7,6 +7,8 @@ ENV GO111MODULE=off \
     GOOS=linux \
     GOARCH=amd64
 
+ENV GO111MODULE=on
+
 WORKDIR /bbtgo
 
 COPY . .
