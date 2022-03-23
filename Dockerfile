@@ -1,3 +1,5 @@
+# docker build -t bbtgo:3.0.0 .
+
 FROM golang:1.17.5 as builder
 
 ENV GO111MODULE=off \

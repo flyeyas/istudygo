@@ -14,4 +14,5 @@
          1. kubectl get pod -n prometheus-stack 
          2. kubectl logs -n prometheus-stack  kube-prometheus-stack-operator-7654f9dbc7-78kbc
    4. 查看svc 
-      1. kubectl get svc -n prometheus-stack 
+      1. kubectl get ep -n cloudnative httpserver-svc -oyaml
+      2. kubectl get svc -n prometheus-stack 
