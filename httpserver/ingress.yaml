@@ -9,9 +9,9 @@ spec:
       http:        
         paths:          
           - backend:              
-            service:                
-              name: httpsvc                
-              port:                  
-                number: 80            
-            path: /            
+              service:                
+                name: httpsvc                
+                port:                  
+                  number: 80            
+              path: /            
             pathType: Prefix

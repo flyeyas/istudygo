@@ -20,15 +20,23 @@ kubectl describe pod -n harbor harbor-registry-86b5499497-4n8vm
 
 kubectl describe svc -n httpserver httpserver-svc
 
+
+
 docker run -d -p 8080:80 maizui216/bbtgo:2.0.0
 
 10.110.88.130 core.harbor.domain
 
  docker push  core.harbor.domain/admin/bbtgo:2.0.0
 
+# 安装 ingress
+
+helm install ingress-nginx nginx-stable/nginx-ingress --create-namespace --namespace ingress  --debug
+
 helm install ingress-nginx nginx-stable/nginx-ingress --create-namespace --namespace ingress --type NodePort --debug
 
 helm list -n ingress
+
+kubectl create -f httpserver/ingress.yaml -n ingress
 
 # 地址dns
 nslookup bbtgo.51.cafe
