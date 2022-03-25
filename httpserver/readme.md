@@ -1,5 +1,9 @@
  kubectl create ns httpserver
 
+kubectl create -f secret.yaml -n secret.yaml
+
+ kubectl  get secret -n httpserver
+
  kubectl create -f httpserver/deployment.yaml -n httpserver
 
 kubectl create -f httpserver/service.yaml -n httpserver
