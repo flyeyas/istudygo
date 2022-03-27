@@ -1,3 +1,20 @@
+### 证书配置
+kubectl  create -f issuer.yaml -n httpserver
+
+kubectl get issuer -n httpserver
+
+NAME               READY   AGE
+letsencrypt-prod   True    25s
+
+kubectl get issuer -n httpserver letsencrypt-prod -oyaml
+
+kubectl replace -f ingress.yaml -n httpserver
+
+kubectl get cert -n httpserver
+
+kubectl describe cert -n httpserver
+### 
+
 ### Deploy simple
 
 ```sh
