@@ -22,6 +22,10 @@ kubectl describe svc -n httpserver httpserver-svc
 
 
 
+## metallb
+
+kubectl describe pod metallb-controller-777cbcf64f-8xfst
+
 docker run -d -p 8080:80 maizui216/bbtgo:2.0.0
 
 10.110.88.130 core.harbor.domain
@@ -32,11 +36,10 @@ docker run -d -p 8080:80 maizui216/bbtgo:2.0.0
 
 helm install ingress-nginx nginx-stable/nginx-ingress --create-namespace --namespace ingress  --debug
 
-helm install ingress-nginx nginx-stable/nginx-ingress --create-namespace --namespace ingress --type NodePort --debug
-
 helm list -n ingress
 
-kubectl create -f httpserver/ingress.yaml -n ingress
+kubectl create -f httpserver/ingress.yaml -n httpserver
+kubectl get ingress -n httpserver
 
 # 地址dns
 nslookup bbtgo.51.cafe
