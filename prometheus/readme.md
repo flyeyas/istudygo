@@ -16,3 +16,5 @@
    4. 查看svc 
       1. kubectl get ep -n cloudnative httpserver-svc -oyaml
       2. kubectl get svc -n prometheus-stack 
+   5. grafna
+      1. 登录账号密码：admin prom-operator
