@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:  
+  name: httpserver  
+  labels:    
+    app: httpserver
+spec:  
+  replicas: 1  
+  selector:    
+    matchLabels:      
+      app: httpserver  
+  template:    
+    metadata:      
+      labels:        
+        app: httpserver    
+    spec:      
+      imagePullSecrets:      
+      - name: cloudnative      
+      containers:      
+      - name: httpserver        
+        image: maizui216/bbtgo:2.0.1
+        ports:        
+        - containerPort: 80
+          # hostPort: 8080
+        readinessProbe:  
+          httpGet:    
+            path: /healthz    
+            port: 80
+          initialDelaySeconds: 5 
+          periodSeconds: 5
+        startupProbe:  
+          httpGet:    
+            path: /healthz    
+            port: 80  
+          failureThreshold: 30  
+          periodSeconds: 10

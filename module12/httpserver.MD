@@ -9,7 +9,7 @@ kubectl create -f istio-specs.yaml -n httpserver
 ### Check ingress ip
 
 ```sh
-k get svc -nistio-system
+kubectl get svc -nistio-system
 
 istio-ingressgateway   LoadBalancer   10.108.31.242
 ```
