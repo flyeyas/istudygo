@@ -61,6 +61,25 @@ httpserver-698d494d4-lfmnt   1/1     Running   0          16m
 
 kubectl delete pod httpserver-698d494d4-lfmnt -n httpserver
 
+#### 证书 dns01
+
+kubectl create -f cert-manager-secret.yaml
+kubectl.exe get secret -n cert-manager
+
+NAME                                  TYPE                                  DATA   AGE
+cloudflare-api-token-secret           Opaque                                1      28s
+
+#### 创建 ClusterIssuer
+kubectl create -f issuer-dns.yaml -n httpserver
+kubectl get  ClusterIssuer -n httpserver
+
+NAME                READY   AGE
+letsencrypt-dns01   True    43s
+
+#### 创建 Certificate
+kubectl create -f bbtgo-51-cafe-certificate-dns.yaml -n httpserver
+kubectl get certificate -n httpserver
+
 kubectl create -f service.yaml
 kubectl create -f virtualserver.yaml
 
