@@ -61,6 +61,10 @@ httpserver-698d494d4-lfmnt   1/1     Running   0          16m
 
 kubectl delete pod httpserver-698d494d4-lfmnt -n httpserver
 
+kubectl create -f service.yaml
+kubectl create -f virtualserver.yaml
+
+
 ### Deploy simple
 
 ```sh

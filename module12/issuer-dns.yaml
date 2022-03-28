@@ -20,10 +20,7 @@ spec:
         ingress:
           class: nginx
         cloudflare:
-          email: 865809599@qq.com # 替换成你的 cloudflare 邮箱账号，API Token 方式认证非必需，API Keys 认证是必需
-          # apiTokenSecretRef:
-          #   key: api-token
-          #   name: cloudflare-api-token-secret # 引用保存 cloudflare 认证信息的 Secret
+          email: 865809599@qq.com # 替换成你的 cloudflare 邮箱账号，API Token 方式认证非必需，API Keys
   # usages:
   # - digital signature
   # - key encipherment
