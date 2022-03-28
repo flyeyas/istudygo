@@ -7,7 +7,7 @@ spec:
   gateways:
   - httpsserver
   hosts:
-  - httpserver-helm.51.cafe
+  - bbtgo.51.cafe
   http:
   - route:
     - destination:

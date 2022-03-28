@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - httpserver-helm.51.cafe
+    - bbtgo.51.cafe
     port:
       name: https-default
       number: 443
