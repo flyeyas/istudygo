@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: httpserver
-  namespace: httpserver
+  # namespace: httpserver
 spec:
   gateways:
   - httpsserver
