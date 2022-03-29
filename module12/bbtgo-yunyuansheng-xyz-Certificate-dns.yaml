@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: bbtgo-yunyuansheng-xyz
+spec:
+  dnsNames:
+  - bbtgo.yunyuansheng.xyz # 要签发证书的域名
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-dns01 # 引用 ClusterIssuer，指示采用 dns01 方式进行校验
+  secretName: bbtgo-yunyuansheng-xyz-tls # 最终签发出来的证书会保存在这个 Secret 里面

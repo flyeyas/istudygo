@@ -80,6 +80,18 @@ letsencrypt-dns01   True    43s
 kubectl create -f bbtgo-51-cafe-certificate-dns.yaml -n httpserver
 kubectl get certificate -n httpserver
 
+kubectl describe CertificateRequest -n httpserver bbtgo-yunyuansheng-xyz
+
+kubectl get secret bbtgo-yunyuansheng-xyz-tls -n default
+
+查看日志
+kubectl logs -f $(kubectl get pods -n cert-manager | grep cert-manager | grep -v 'cainjector\|webhook' | awk '{print $1}') -n cert-manager
+
+E0329 00:13:59.666405       1 controller.go:163] cert-manager/challenges "msg"="re-queuing item due to error processing" "error"="while attempting to find Zones for domain _acme-challenge.bbtgo.yunyuansheng.xyz.\nwhile querying the Cloudflare API for GET \"/zones?name=_acme-challenge.bbtgo.yunyuansheng.xyz\" \n\t Error: 9109: Max auth failures reached, please check your Authorization header." "key"="httpserver/bbtgo-yunyuansheng-xyz-c578l-2832687487-2344801065"
+
+
+
+
 kubectl create -f service.yaml
 kubectl create -f virtualserver.yaml
 
