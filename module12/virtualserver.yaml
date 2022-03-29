@@ -7,7 +7,7 @@ spec:
   gateways:
   - httpsserver
   hosts:
-  - bbtgo.51.cafe
+  - bbtgo.yunyuansheng.xyz
   http:
   - route:
     - destination:

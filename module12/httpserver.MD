@@ -77,12 +77,20 @@ NAME                READY   AGE
 letsencrypt-dns01   True    43s
 
 #### 创建 Certificate
-kubectl create -f bbtgo-51-cafe-certificate-dns.yaml -n httpserver
+kubectl create -f bbtgo-yunyuansheng-xyz-certificate-dns.yaml -n httpserver
+
+创建好 Certificate 后，等一小会儿，我们可以 kubectl 查看是否签发成功
 kubectl get certificate -n httpserver
 
 kubectl describe CertificateRequest -n httpserver bbtgo-yunyuansheng-xyz
 
-kubectl get secret bbtgo-yunyuansheng-xyz-tls -n default
+NAME                     READY   SECRET                       AGE
+bbtgo-yunyuansheng-xyz   True    bbtgo-yunyuansheng-xyz-tls   2m15s
+
+如果为 True 表示签发成功，证书就保存在我们所指定的 Secret 中, 可以通过 kubectl 查看:
+
+kubectl get secret bbtgo-yunyuansheng-xyz-tls -n httpserver -oyaml
+kubectl get secret  -n istio-system
 
 查看日志
 kubectl logs -f $(kubectl get pods -n cert-manager | grep cert-manager | grep -v 'cainjector\|webhook' | awk '{print $1}') -n cert-manager

@@ -8,11 +8,11 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - bbtgo.51.cafe
+    - bbtgo.yunyuansheng.xyz
     port:
       name: https-default
       number: 443
       protocol: HTTPS
     tls:
-      credentialName: httpserver-helm
+      credentialName: bbtgo-yunyuansheng-xyz-tls
       mode: SIMPLE
