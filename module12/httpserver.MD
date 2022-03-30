@@ -90,6 +90,10 @@ bbtgo-yunyuansheng-xyz   True    bbtgo-yunyuansheng-xyz-tls   2m15s
 如果为 True 表示签发成功，证书就保存在我们所指定的 Secret 中, 可以通过 kubectl 查看:
 
 kubectl get secret bbtgo-yunyuansheng-xyz-tls -n httpserver -oyaml
+
+把证书手动放到 namespaces=istio-system中，secret中存储的是base64之后的
+kubectl create -n istio-system secret tls cncamp-credential --key=cncamp.io.key --cert=cncamp.io.crt
+
 kubectl get secret  -n istio-system
 
 查看日志
@@ -97,8 +101,7 @@ kubectl logs -f $(kubectl get pods -n cert-manager | grep cert-manager | grep -v
 
 E0329 00:13:59.666405       1 controller.go:163] cert-manager/challenges "msg"="re-queuing item due to error processing" "error"="while attempting to find Zones for domain _acme-challenge.bbtgo.yunyuansheng.xyz.\nwhile querying the Cloudflare API for GET \"/zones?name=_acme-challenge.bbtgo.yunyuansheng.xyz\" \n\t Error: 9109: Max auth failures reached, please check your Authorization header." "key"="httpserver/bbtgo-yunyuansheng-xyz-c578l-2832687487-2344801065"
 
-
-
+kubectl create -n istio-system secret tls cncamp-credential --key=cncamp.io.key --cert=cncamp.io.crt
 
 kubectl create -f service.yaml
 kubectl create -f virtualserver.yaml
