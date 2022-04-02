@@ -118,7 +118,7 @@ NAME             TYPE           CLUSTER-IP    EXTERNAL-IP    PORT(S)           A
 httpserver-svc   LoadBalancer   10.0.174.97   20.89.36.187   30001:31622/TCP   5d13h
 httpserversvc    ClusterIP      10.0.242.82   <none>         80/TCP            8s
 
-kubectl create -f virtualserver.yaml -n httpserver
+kubectl create -f virtualService.yaml -n httpserver
 kubectl get virtualservices -n httpserver
 
 NAME         GATEWAYS          HOSTS                        AGE
@@ -129,27 +129,3 @@ kubectl get gw -n httpserver
 
 NAME          AGE
 httpsserver   11s
-
-
-
-### Deploy simple
-
-```sh
-kubectl create ns httpserver
-kubectl create -f simple.yaml -n httpserver
-kubectl create -f istio-specs.yaml -n httpserver
-```
-
-### Check ingress ip
-
-```sh
-kubectl get svc -nistio-system
-
-istio-ingressgateway   LoadBalancer   10.108.31.242
-```
-
-### Access the httpserver via ingress
-
-```sh
-curl --resolve httpsserver.cncamp.io:443:$INGRESS_IP https://httpsserver.cncamp.io/healthz -v -k
-```
