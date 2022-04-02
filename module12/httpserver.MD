@@ -101,10 +101,35 @@ kubectl logs -f $(kubectl get pods -n cert-manager | grep cert-manager | grep -v
 
 E0329 00:13:59.666405       1 controller.go:163] cert-manager/challenges "msg"="re-queuing item due to error processing" "error"="while attempting to find Zones for domain _acme-challenge.bbtgo.yunyuansheng.xyz.\nwhile querying the Cloudflare API for GET \"/zones?name=_acme-challenge.bbtgo.yunyuansheng.xyz\" \n\t Error: 9109: Max auth failures reached, please check your Authorization header." "key"="httpserver/bbtgo-yunyuansheng-xyz-c578l-2832687487-2344801065"
 
-kubectl create -n istio-system secret tls cncamp-credential --key=cncamp.io.key --cert=cncamp.io.crt
 
-kubectl create -f service.yaml
-kubectl create -f virtualserver.yaml
+证书迁移到istio-system中
+kubectl create -n istio-system secret tls bbtgo-yunyuansheng-xyz-credential --key=cncamp.io.key --cert=cncamp.io.crt
+
+
+kubectl get secret -n istio-system
+
+NAME                                               TYPE                                  DATA   AGE
+bbtgo-yunyuansheng-xyz-credential                  kubernetes.io/tls                     2      28s
+
+
+kubectl create -f service.yaml -n httpserver
+
+NAME             TYPE           CLUSTER-IP    EXTERNAL-IP    PORT(S)           AGE
+httpserver-svc   LoadBalancer   10.0.174.97   20.89.36.187   30001:31622/TCP   5d13h
+httpserversvc    ClusterIP      10.0.242.82   <none>         80/TCP            8s
+
+kubectl create -f virtualserver.yaml -n httpserver
+kubectl get virtualservices -n httpserver
+
+NAME         GATEWAYS          HOSTS                        AGE
+httpserver   ["httpsserver"]   ["bbtgo.yunyuansheng.xyz"]   21s
+
+kubectl create -f httpgw.yaml -n httpserver
+kubectl get gw -n httpserver
+
+NAME          AGE
+httpsserver   11s
+
 
 
 ### Deploy simple
@@ -126,6 +151,5 @@ istio-ingressgateway   LoadBalancer   10.108.31.242
 ### Access the httpserver via ingress
 
 ```sh
-export INGRESS_IP=10.108.31.242
-curl -H "Host: httpserver.cncamp.io" $INGRESS_IP/hello -v
+curl --resolve httpsserver.cncamp.io:443:$INGRESS_IP https://httpsserver.cncamp.io/healthz -v -k
 ```
