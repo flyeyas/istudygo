@@ -1,35 +1,35 @@
-# apiVersion: networking.istio.io/v1beta1
-# kind: VirtualService
-# metadata:
-#   name: httpserver
-#   namespace: httpserver
-# spec:
-#   gateways:
-#     - httpsserver
-#   hosts:
-#     - bbtgo.yunyuansheng.xyz
-#   http:
-#     - route:
-#       - destination:
-#           host: httpserver.httpserver.svc.cluster.local
-#           port:
-#             number: 80
-# ---
-
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: httpsserver
+  name: httpserver
+  namespace: httpserver
 spec:
   gateways:
     - httpsserver
   hosts:
     - bbtgo.yunyuansheng.xyz
   http:
-    - match:
-        - port: 443
-      route:
-        - destination:
-            host: httpserver.securesvc.svc.cluster.local
-            port:
-              number: 80
+    - route:
+      - destination:
+          host: httpserver.httpserver.svc.cluster.local
+          port:
+            number: 80
+# ---
+
+# apiVersion: networking.istio.io/v1beta1
+# kind: VirtualService
+# metadata:
+#   name: httpsserver
+# spec:
+#   gateways:
+#     - httpsserver
+#   hosts:
+#     - bbtgo.yunyuansheng.xyz
+#   http:
+#     - match:
+#         - port: 443
+#       route:
+#         - destination:
+#             host: httpserver.securesvc.svc.cluster.local
+#             port:
+#               number: 80
