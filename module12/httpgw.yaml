@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - bbtgo.yunyuansheng.xyz
+      - bbtgo.yunyuansheng.xyz
     port:
       name: https-default
       number: 443
